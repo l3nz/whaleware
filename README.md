@@ -18,7 +18,7 @@ Principles
   be passed externally.
 - Though we have a preference for JSON over HTTP, notifications should be environment-agnostic.
   You could store the current lifecycle information and app health on a database, or on
-  an external webapp, on etcd or in an Elasticsearch database. You should be able to choose.
+  an external webapp, on `etcd` or in an Elasticsearch database. You should be able to choose.
 - Running a server within Docker means receiving Docker signals - so you can start an orderly
   shutdown in case the instance needs to terminate.
 - Data should be stored in a separate directory, ready to mount a data-only container (if you want to)
@@ -67,7 +67,8 @@ Every 30 seconds, the **monitor** script is run. It is supposed to query the app
 object with health information (number of queries processed, free memory, etc.). This information is
 posted to a database through the **pushstats** script.
 
-If the monitor scripts returns with an error code, then all services are stopped and restarted.
+If the monitor scripts returns with an error code, then all services are stopped and restarted 
+(through **svcdown** and **svcup**).
 
 While the app is running, if you issue a `docker stop` the run process will shutdown services and 
 terminate cleanly.

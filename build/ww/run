@@ -1,0 +1,91 @@
+#! /bin/bash
+
+WUSR=/ww/usr
+WETC=/ww/etc
+
+# writes a common configuration
+echo $CFG > $WETC/source_cfg.json
+jq -s '.[0] + .[1]' $WETC/defaults.json $WETC/source_cfg.json > $WETC/cfg.json
+
+# was this already started once?
+if [ ! -f /data/whaleup ]; then
+  echo "Creating /data"
+  $WUSR/lifecycle FIRSTBOOT
+  $WUSR/firstboot
+  touch /data/whaleup
+fi
+
+$WUSR/lifecycle UPGRADING
+$WUSR/upgrade
+
+$WUSR/lifecycle WARMUP
+$WUSR/warmup
+
+$WUSR/lifecycle UP
+
+#
+# DOCKER SIGNALS
+#
+
+function stop_services {
+	$WUSR/svcdown
+	$WUSR/lifecycle STOPPED		
+}
+
+function restart_services {
+        $WUSR/lifecycle RESTARTING
+	$WUSR/svcdown
+        $WUSR/svcup
+        $WUSR/lifecycle UP
+}
+
+function process_signals {
+  case "$1" in
+    SIGINT)
+      echo "[docker stop] Shutdown"
+      stop_services
+      exit 1
+      ;;
+    SIGTERM)
+      echo "[docker stop] Shutdown SIGTERM"
+      stop_services
+      exit 2
+      ;;
+    SIGHUP)
+      echo "[docker restart] Restarting"
+      restart_services
+      ;;
+  esac
+}
+
+
+trap "process_signals 'SIGINT'" SIGINT
+trap "process_signals 'SIGTERM'" SIGTERM
+trap "process_signals 'SIGHUP'" SIGHUP
+
+#
+# Main wait loop
+#
+
+while :
+do
+
+RES=$( $WUSR/monitor )
+
+if [ "$?" = "0" ] ; then
+     $WUSR/pushstats "$RES"
+else
+     echo "DOWN - RESTARTING"
+     restart_services     
+fi
+sleep 30
+echo ""
+
+done
+
+
+
+
+
+
+

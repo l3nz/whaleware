@@ -1,0 +1,5 @@
+#! /bin/bash
+
+jq -r .$1 /ww/etc/cfg.json
+
+

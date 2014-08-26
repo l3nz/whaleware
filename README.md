@@ -20,20 +20,20 @@ Benefits
 Directories used
 ----------------
 
-/whaleware - where all files for whaleware live
-/data - where all data for an app is to be positioned
-/backup - a mount point for backup scripts to send data to the host
+- /whaleware - where all files for whaleware live
+- /data - where all data for an app is to be positioned
+- /backup - a mount point for backup scripts to send data to the host
 
 
 Scripts used
 ------------
 
-run - the script that orchestrates all other scripts
-firstboot - the scripts that sets the system up for the first boot
-lifecycle -
-pushstats -
-monitor -
-stop - tries to terminate services gracefully
+- run - the script that orchestrates all other scripts
+- firstboot - the scripts that sets the system up for the first boot
+- lifecycle -
+- pushstats -
+- monitor -
+- stop - tries to terminate services gracefully
 
 
 

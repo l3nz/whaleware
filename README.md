@@ -5,7 +5,7 @@ A standard startup template for Docker images.
 
 Benefits
 --------
-- Common filesystem layout. Just replace files as needed.
+- A common filesystem layout. Just replace files as needed.
 - JSON configuration. The configuration is passed as a JSON file that is merged with an existing defaults file. 
   So you do not have to track a large number of separate environment variables. 
 - Centrally reports the state of an instance. 

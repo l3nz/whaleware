@@ -30,7 +30,9 @@ Scripts used
 
 - run - the script that orchestrates all other scripts
 - firstboot - the scripts that sets the system up for the first boot
-- lifecycle -
+- upgrade - upgrades the system (eg applies database schema changes)
+- warmup - starts services and warms them up
+- lifecycle [STATE]
 - pushstats -
 - monitor -
 - stop - tries to terminate services gracefully

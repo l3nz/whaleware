@@ -48,12 +48,15 @@ When an instance is started (via `/ww/run`) it gets the external configuration f
 parameter, applies any defaults found in `/www/etc/default_cfg.json` and saves it under
 `/www/etc/cfg.json` . This configuration can be queried at any time though the `/ww/cfg` script.
 
+On first start, it runs the **boot** script to edit the default image according to the 
+configuration received externally. This happens each time an image is booted.
+
 Then it checks to see if the data-only container is initialized. Of course this only makes sense
 if you have a data-only container mounted under `/data`. If none is mounted, the webapp will
 always perform a first boot.
 
 If `/data` is not initialized, it launches the **firstboot** script so you can create databases, copy
-configuration scripts, etc.
+configuration scripts, etc. 
 
 After this, the **upgrade** script is run. This is used to detect if `/data` contains material from
 a previous version that needs upgrading.
@@ -73,6 +76,8 @@ If the monitor scripts returns with an error code, then all services are stopped
 While the app is running, if you issue a `docker stop` the run process will shutdown services and 
 terminate cleanly.
 
+Most likely, you will NOT need all of these stages in your app. So you can simply create
+the scripts you need and leave other scripts blank.
 
 Directories used
 ----------------

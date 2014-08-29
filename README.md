@@ -78,7 +78,8 @@ Directories used
 ----------------
 
 - `/ww` - where all files for whaleware live
-- `/ww/usr` - where specific files are to be positioned
+- `/ww/usr` - where scripts are to be put
+- `/ww/files` - where your own configuration files can be put
 - `/ww/etc` - where the default configuration and the current configuration are stored
 - `/data` - where all data for an app is to be positioned
 - `/backup` - a mount point for backup scripts to send data to the host
@@ -92,9 +93,10 @@ Default scripts:
 - `/ww/run` - the script that orchestrates all other scripts
 - `/ww/cfg` - reads a configuration variale from the current configuration
 
-Under /ww/usr are the following scripts. Replace the one(s) you need.
+Under `/ww/usr` are the following scripts. Replace the one(s) you need.
 
-- `firstboot` - the scripts that sets the system up for the first boot
+- `boot` - the script that sets the sytem up on an image boot. Sets the system up but for the `/data` directory. Runs on every boot.
+- `firstboot` - on the first boot, the `/data` directory is initialized. It happens just once if you have permanent storage.
 - `upgrade` - upgrades the system (eg applies database schema changes)
 - `warmup` - starts services and warms them up
 - `lifecycle [STATE]` - notifies a central server about the life-cycle of the current app
@@ -112,6 +114,7 @@ An app's life cycle
 
 To be done
 
+- BOOT
 - FIRSTBOOT
 - UPGRADING
 - WARMUP
@@ -119,6 +122,15 @@ To be done
 - RESTARTING
 - STOPPED
 - ERROR
+
+
+Example
+-------
+
+To be done...
+
+
+
 
 
 

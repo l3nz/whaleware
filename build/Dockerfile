@@ -5,6 +5,7 @@ RUN yum install -y wget lsof nano tar jq
 RUN mkdir -p /data
 RUN mkdir -p /ww
 RUN mkdir -p /backup
+CMD ["/ww/run"]
 ADD ./ww /ww
 
 

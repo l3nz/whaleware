@@ -7,6 +7,9 @@ WETC=/ww/etc
 echo $CFG > $WETC/source_cfg.json
 jq -s '.[0] + .[1]' $WETC/defaults.json $WETC/source_cfg.json > $WETC/cfg.json
 
+$WUSR/lifecycle BOOT
+$WUSR/boot
+
 # was this already started once?
 if [ ! -f /data/whaleup ]; then
   echo "Creating /data"
@@ -19,6 +22,7 @@ $WUSR/lifecycle UPGRADING
 $WUSR/upgrade
 
 $WUSR/lifecycle WARMUP
+$WUSR/svcup
 $WUSR/warmup
 
 $WUSR/lifecycle UP

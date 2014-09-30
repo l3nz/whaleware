@@ -1,6 +1,8 @@
 whaleware
 =========
 
+	
+
 A standard startup template for Docker server images.
 
 Principles

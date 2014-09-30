@@ -1,0 +1,34 @@
+#! /bin/bash
+
+WCFG=/ww/cfg
+WFILES=/ww/files
+
+WOMBAT=/usr/local/queuemetrics/tomcat/webapps/wombat
+
+# create folders
+mkdir -p /data/mysql
+mkdir -p /data/wbt
+
+#
+#cp $WFILES/configuration.properties $CFGPROPS
+
+
+
+
+# start mysql
+/etc/init.d/mysqld start
+
+echo ==== CREATE DB
+sleep 2
+
+mysql mysql <  $WOMBAT/WEB-INF/DB/wombat_create.sql
+mysql -uwombat -pdials wombat <  $WOMBAT/WEB-INF/DB/wombat_schema.sql
+
+cp $WFILES/tpf.properties /data/wbt/tpf.properties
+rm -rf $WOMBAT/WEB-INF/tpf.properties
+cd $WOMBAT/WEB-INF/
+ln -s /data/wbt/tpf.properties tpf.properties
+
+
+
+

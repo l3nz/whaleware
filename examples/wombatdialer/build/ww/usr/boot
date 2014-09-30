@@ -1,0 +1,20 @@
+#! /bin/bash
+
+WCFG=/ww/cfg
+WFILES=/ww/files
+
+# Mysql
+cp $WFILES/my.cnf /etc/my.cnf
+
+
+# Parametri esterni CLI MEM TMZ
+MEM=$($WCFG memory)M
+TIMEZONE=$($WCFG timezone)
+
+echo Memory: $MEM Timezone: $TIMEZONE
+
+JOPTS="-server -Xmx$MEM -Xms$MEM -Duser.timezone=$TIMEZONE"
+echo export JAVA_OPTS=\"$JOPTS\" >> /etc/sysconfig/qm-tomcat6
+
+
+

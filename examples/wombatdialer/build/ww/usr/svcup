@@ -1,0 +1,11 @@
+#! /bin/bash
+
+echo "Services starting"
+/etc/init.d/mysqld restart
+/etc/init.d/queuemetrics start
+
+
+
+
+
+

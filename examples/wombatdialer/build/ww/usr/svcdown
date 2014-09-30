@@ -1,0 +1,10 @@
+#! /bin/bash
+
+echo "Services down"
+/etc/init.d/mysqld stop
+/etc/init.d/queuemetrics stop
+
+
+
+
+

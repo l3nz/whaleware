@@ -4,7 +4,7 @@ whaleware
 	
 
 A standard startup template for Docker server images. Available as a base CentOS 6 image 
-as'lenz/whaleware' - https://registry.hub.docker.com/u/lenz/whaleware/
+under the name 'lenz/whaleware' - https://registry.hub.docker.com/u/lenz/whaleware/
 
 Principles
 ----------
@@ -132,10 +132,14 @@ To be done
 - ERROR
 
 
-Example
--------
+Examples
+--------
 
-To be done...
+* [wombatdialer](examples/wombatdialer/wombatdialer.md). - a next generation dialer application for the Asterisk PBX. 
+  It is interesting because it is a Java web application with embedded MySQL
+  and has a complex life cycle - so you can see the basic components in action.
+
+
 
 
 

@@ -82,6 +82,49 @@ terminate cleanly.
 Most likely, you will NOT need all of these stages in your app. So you can simply create
 the scripts you need and leave other scripts blank.
 
+Permanent storage
+-----------------
+
+whaleware offers a common pattern to manage permanent storage. All storage should be stored under the "/data"
+directory. If you want this to be permanent, you can either use a data-only container that exports
+it or mount it as a local folder.
+
+### Using a data-only container
+
+The simplest way to run a permanent data-only container is to create a named container and bind it
+to your whaleware image:
+
+    docker run --name=MYWBT loway/data true
+    docker run --volumes-from MYWBT -p 8080:8080 -d loway/wombatdialer
+
+By using a named container, the likelihood or binding to the wrong container is reduced.
+
+### Using a local directory
+
+You can also bind your whaleware image to a local folder, just like in:
+
+    mkdir -p /opt/data/WBT1DATA
+    docker run -v /opt/data/WBT1DATA:/data -p 8080:8080 -d loway/wombatdialer
+
+This makes it easy to access and inspect the contents of your data container at the price of
+a somehow "messier" configuration on the host.
+
+
+Configuration
+-------------
+
+whaleware stores all configuration as a JSON file. The default configuration is stored
+in `/ww/etc/defaults.json`. When the app is run, a current configuration is computed by merging 
+it with the contents of the CFG environment variable, that is to contain a JSON structure.
+You then access the results of the merge though the `/ww/cfg` script.
+
+This way you can override the default configuration on the command line, as in:
+
+    docker run -e CFG='{"memory":400}' -p 8080:8080 -d loway/wombatdialer
+
+And you can still have fairly complex configuration.
+
+
 Directories used
 ----------------
 
@@ -99,38 +142,43 @@ Scripts used
 Default scripts:
 
 - `/ww/run` - the script that orchestrates all other scripts
-- `/ww/cfg` - reads a configuration variale from the current configuration
+- `/ww/cfg` - reads a configuration value from the current configuration
 
 Under `/ww/usr` are the following scripts. Replace the one(s) you need.
 
-- `boot` - the script that sets the sytem up on an image boot. Sets the system up but for the `/data` directory. Runs on every boot.
+- `boot` - the script that sets the sytem up on an image boot. Sets the system up but for the `/data` directory. 
+   Runs as first script on each and every boot.
 - `firstboot` - on the first boot, the `/data` directory is initialized. It happens just once if you have permanent storage.
-- `upgrade` - upgrades the system (eg applies database schema changes)
-- `warmup` - starts services and warms them up
-- `lifecycle [STATE]` - notifies a central server about the life-cycle of the current app
-- `pushstats [JSON]` - pushes a JSON blob
-- `monitor` - return a JSON blob about  the state of the service. If it returns with an error code different than zero,
+- `upgrade` - upgrades the system (eg applies database schema changes). It is run on every boot.
+- `warmup` - starts services and warms them up. It is run on every boot.
+- `monitor` - return a JSON blob about the state of the service. If it returns with an error code different than zero,
   the webapp needs to be restarted.
+
+Helper scripts:
+
 - `svcdown` - shut down the server
 - `svcup` - starts the server
-
-
+- `lifecycle [STATE]` - notifies a central server about the life-cycle of the current app. The default implementation
+  just logs it on stdout.
+- `pushstats [JSON]` - pushes the JSON blob returned by `monitor` to a monitoring service. The default implementation
+  does nothing. 
 
 
 An app's life cycle
 -------------------
 
-To be done
+An app progresses trough a life-cycle. The life-cycle can be pushed externally through the `lifecycle` script so
+that an external system can be aware of the current state of the app.
 
-- BOOT
-- FIRSTBOOT
-- UPGRADING
-- WARMUP
-- UP
-- RESTARTING
-- STOPPED
-- ERROR
-
+- BOOT - System is running the `boot` script.
+- FIRSTBOOT - System is running the `firstboot` script.
+- UPGRADING - System is running the `upgrading` script.
+- WARMUP - System is running the `warmup` script.
+- UP - System is ready to serve requests.
+- RESTARTING - System is being restarted, because either the `monitor` script encountered a problem or
+  a SIGHUP was received by the Docker host. After the restart, the system is flagged as UP.
+- STOPPED - System is being stopped because it received a SIGTERM from Docker (likely a "docker stop" was performed)
+- ERROR - System is in an unrecoverable error state and is terminating (not currently used).
 
 Examples
 --------
@@ -138,11 +186,5 @@ Examples
 * [wombatdialer](examples/wombatdialer/wombatdialer.md). - a next generation dialer application for the Asterisk PBX. 
   It is interesting because it is a Java web application with embedded MySQL
   and has a complex life cycle - so you can see the basic components in action.
-
-
-
-
-
-
 
 

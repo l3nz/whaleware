@@ -1,11 +1,9 @@
 #! /bin/bash
 
 WCFG=/ww/cfg
-CLI=$($WCFG client)
 
 RES=$( curl -s --retry 2 --retry-delay 5 http://localhost:8080/wombat/api/sysup/ )
 STATE=$( echo $RES | jq -r '.state' )
-
 
 if [ "$STATE" = "WBTUP" ] ; then
      echo $RES
@@ -14,9 +12,4 @@ else
      echo "DOWN - RESTARTING"
      exit 1
 fi
-
-
-
-
-
 

@@ -3,11 +3,11 @@
 WCFG=/ww/cfg
 WFILES=/ww/files
 
-# Mysql
+# Set up MySQL
 cp $WFILES/my.cnf /etc/my.cnf
 
 
-# Parametri esterni CLI MEM TMZ
+# Set up Tomcat getting configuration parameters out of the JSON configuration files
 MEM=$($WCFG memory)M
 TIMEZONE=$($WCFG timezone)
 

@@ -5,20 +5,18 @@ WFILES=/ww/files
 
 WOMBAT=/usr/local/queuemetrics/tomcat/webapps/wombat
 
-# create folders
+# creates folders on the data directory
 mkdir -p /data/mysql
 mkdir -p /data/wbt
 
-#
-#cp $WFILES/configuration.properties $CFGPROPS
+# As we have to initialize MySQL, we will have to run it 
+# in order to load data. As firstboot is not supposed to
+# start services, we will start mysql, configure it and then
+# stop it.
 
-
-
-
-# start mysql
-/etc/init.d/mysqld start
-
+# start mysql and wait for a while until it's up
 echo ==== CREATE DB
+/etc/init.d/mysqld start
 sleep 2
 
 mysql mysql <  $WOMBAT/WEB-INF/DB/wombat_create.sql
@@ -28,6 +26,10 @@ cp $WFILES/tpf.properties /data/wbt/tpf.properties
 rm -rf $WOMBAT/WEB-INF/tpf.properties
 cd $WOMBAT/WEB-INF/
 ln -s /data/wbt/tpf.properties tpf.properties
+
+# stop mysql
+/etc/init.d/mysqld stop
+
 
 
 

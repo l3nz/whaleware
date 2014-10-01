@@ -54,20 +54,21 @@ Configuration
 
 The default configuration is stored under ww/cfg/defaults.json.
 
-----
-{
- "notify_url": "http://1.2.3.4",
- "webapp": "Loway WombatDialer",
- "memory": 128,
- "timezone": "Europe/Rome"
-}
-----
+
+    {
+     "notify_url": "http://1.2.3.4",
+     "webapp": "Loway WombatDialer",
+     "memory": 128,
+     "timezone": "Europe/Rome"
+    }
+
 
 If you want to override it, you should specify your parameters (only the ones you want to override) as JSON text in:
 
-----
-docker run -e CFG='{"memory":400,"timezone":"GMT"}' -p 8080:8080 -d loway/wombatdialer
-----
+    docker run -e CFG='{"memory":400,"timezone":"GMT"}' -p 8080:8080 -d loway/wombatdialer
+
+
+
 
 
 

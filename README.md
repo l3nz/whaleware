@@ -170,6 +170,7 @@ An app's life cycle
 An app progresses trough a life-cycle. The life-cycle can be pushed externally through the `lifecycle` script so
 that an external system can be aware of the current state of the app.
 
+- DOCKERUP - An optional state notified by a startup script before the app is started
 - BOOT - System is running the `boot` script.
 - FIRSTBOOT - System is running the `firstboot` script.
 - UPGRADING - System is running the `upgrading` script.
@@ -179,6 +180,7 @@ that an external system can be aware of the current state of the app.
   a SIGHUP was received by the Docker host. After the restart, the system is flagged as UP.
 - STOPPED - System is being stopped because it received a SIGTERM from Docker (likely a "docker stop" was performed)
 - ERROR - System is in an unrecoverable error state and is terminating (not currently used).
+- DOCKERDOWN - - An optional state notified by a stop script after the Docker app is shutdown
 
 Examples
 --------

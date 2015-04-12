@@ -1,6 +1,6 @@
 #! /bin/bash
 
-echo "Warming up - sleeping for 3 secs so Tomcat can go up"
+echo "Warming up - sleeping for 3 secs so Asterisk can go up"
 sleep 3
 
 

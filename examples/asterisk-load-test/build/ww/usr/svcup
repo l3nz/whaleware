@@ -1,5 +1,7 @@
 #! /bin/bash
 
 echo "Services starting"
-/etc/init.d/asterisk start
+#/etc/init.d/asterisk start
+asterisk
+
 

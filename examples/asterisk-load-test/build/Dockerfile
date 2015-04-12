@@ -1,6 +1,6 @@
 FROM lenz/whaleware
 
-EXPOSE 5036
+EXPOSE 5038 8088
 
 RUN \
  yum install -y wget mlocate dnsmasq nano mc && \

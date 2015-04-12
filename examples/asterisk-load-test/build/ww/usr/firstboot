@@ -1,0 +1,23 @@
+#! /bin/bash
+
+WCFG=/ww/cfg
+WFILES=/ww/files
+
+ASTCFG=/etc/asterisk
+
+# creates folders on the data directory
+mkdir -p /data/logs 
+
+
+cp $WFILES/*.conf $ASTCFG
+
+echo "#include extensions_wdload.conf" >> $ASTCFG/extensions.conf
+echo "#include queues_wdload.conf" >> $ASTCFG/queues.conf
+
+
+
+
+
+
+
+

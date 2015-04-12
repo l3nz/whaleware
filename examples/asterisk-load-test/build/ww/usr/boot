@@ -1,0 +1,13 @@
+#! /bin/bash
+
+WCFG=/ww/cfg
+WFILES=/ww/files
+
+# Set up Tomcat getting configuration parameters out of the JSON configuration files
+MEM=$($WCFG memory)M
+TIMEZONE=$($WCFG timezone)
+
+echo Memory: $MEM Timezone: $TIMEZONE
+
+
+

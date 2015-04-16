@@ -4,7 +4,9 @@ Run multiple Asterisk instances on the same box. Run regression tests. Simulate 
 All on Docker.
 
 This project was born as a simple way to do regression testing on [WombatDialer], 
-our nice intelligent dialer that works with any existing Asterisk PBX. 
+our nice intelligent dialer that just works with any existing Asterisk PBX, and
+[QueueMetrics], the well-known call-center reporting and monitoring suite. 
+But you can use it to test any AMI/ARI application or piece of dialplan.
 
 ## Quick start
 
@@ -80,7 +82,8 @@ Login: ari4java / yothere
 
 ## Customizing
 
-
+As these are standard Whaleware images, you can use them as base images and then inject your own dialplan / configuration files.
+Whaleware offers a complete lifecycle management you can hook into, though in most cases you will simply add a few more files.
 
 
 # Building
@@ -134,12 +137,16 @@ or just to run a command:
      docker exec 52af95db1e52 /usr/sbin/asterisk -rx reload
 
 
+# Issues
 
-# Open files issue
+## Open files issue
 
-ulimit issue:
+Please note that at the moment you cannot run too many channels on a Docker instance, because you cannot 
+set ulimit within a Docker image: 
 
 http://stackoverflow.com/questions/24318543/how-to-set-ulimit-file-descriptor-on-docker-container-the-image-tag-is-phusion
+
+
 
 
 

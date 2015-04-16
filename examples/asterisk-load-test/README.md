@@ -25,7 +25,40 @@ ARI:  ari4java/yothere
 docker build -tag=ast11 .
 
 
-docker run -p 5036:5036 a11
+docker run -p 2000:5038 a11
+
+will add port 5038 (AMI) as port 2000
+
+
+
+docker run -p 2010:5038 -P -d lenz/asterisk-load-test-13
+
+# Testing
+
+telnet 127.0.0.1 2000
+
+[root@localhost ~]# telnet 127.0.0.1 2004
+Trying 127.0.0.1...
+Connected to 127.0.0.1.
+Escape character is '^]'.
+Asterisk Call Manager/1.1
+Action: logoff
+
+Response: Goodbye
+Message: Thanks for all the fish.
+
+Connection closed by foreign host.
+
+Accessing the container
+
+docker exec -it 52af95db1e52 /bin/bash
+docker exec -it 52af95db1e52 /usr/sbin/asterisk -r
+
+or just to run a command:
+
+docker exec 52af95db1e52 /usr/sbin/asterisk -rx reload
+
+
 
 # Available images
 

@@ -21,6 +21,7 @@ docker push $DOCKERUSER/$IMG:latest
 
 
 pushImage "ast11" "asterisk-load-test-11"
+pushImage "ast12" "asterisk-load-test-12"
 pushImage "ast13" "asterisk-load-test-13"
 pushImage "ast1.8" "asterisk-load-test-1.8"
 

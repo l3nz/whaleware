@@ -17,6 +17,7 @@ cd ..
 
 makeImage "ast1.8" 
 makeImage "ast11" 
+makeImage "ast12"
 makeImage "ast13" 
 
 

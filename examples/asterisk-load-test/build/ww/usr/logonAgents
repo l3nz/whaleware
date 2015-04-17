@@ -1,0 +1,58 @@
+#! /usr/bin/env ruby
+
+#
+# Logs on and off agents from the PBX
+#
+
+require 'optparse'
+
+queue = "q1"
+rem_to = -1
+add_to = -1
+agtype = 2
+
+option_parser = OptionParser.new do |opts|
+  opts.on( "-q [QUEUE]", "--queue [QUEUE]") do |q|
+    queue = q;
+  end
+
+  opts.on( "-r [NUM]", "--remove_up_to [NUM]") do |r|
+    rem_to = r.to_i
+  end
+
+  opts.on( "-a [NUM]", "--add_up_to [NUM]") do |a|
+    add_to = a.to_i
+  end
+
+  opts.on( "-b [NUM]", "--agent-base-code [NUM]") do |a|
+    agtype = a.to_i
+  end
+
+end
+
+option_parser.parse!
+
+agbase = 10000 * agtype
+
+print "On queue #{queue} with agent ext starting at #{agbase}"
+print " - Remove: #{rem_to > -1 ? rem_to :"None"} - Add: #{add_to> -1 ? add_to :"None"}\n"
+
+def performOnAsterisk( cmd )
+  v = "asterisk -rx \"#{ cmd }\""
+  res =  `#{v}`
+  print "#{cmd}: #{res}"
+end
+
+# logs off all agents
+
+(0..rem_to).each do |x|
+  performOnAsterisk( "queue remove member Local/#{ agbase + x }@wdep from #{ queue }" )
+end
+
+# now log them back in if needed
+(0..add_to).each do |x|
+  performOnAsterisk( "queue add member Local/#{ agbase + x }@wdep to #{ queue }" )
+end
+
+performOnAsterisk( "queue show #{ queue }")
+

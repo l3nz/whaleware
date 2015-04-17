@@ -5,7 +5,7 @@ All on Docker.
 
 This project was born as a simple way to do regression testing on [WombatDialer], 
 our nice intelligent dialer that just works with any existing Asterisk PBX, and
-[QueueMetrics], the well-known call-center reporting and monitoring suite. 
+[QueueMetrics], our well-known call-center reporting and monitoring suite. 
 But you can use it to test any AMI/ARI application or piece of dialplan.
 
 ## Quick start
@@ -24,18 +24,18 @@ Want to run WombatDialer to put some load on those images?
 
      docker run -p 8080:8080 -P -d loway/wombatdialer
 
-And connect to it over HTTP port 8080 (login as 'demoadmin' password 'demo').
+And connect to it over HTTP http://server.ip:8080/wombat (login as 'demoadmin' password 'demo').
 See https://registry.hub.docker.com/u/loway/wombatdialer/
 
 
 ## Available Docker images
 
-| Version       | AMI | ARI | Image         | Run with  | RPMS from |
-| ------------- |:---:|:---:|:-------------:| --------- | --------- |
-| Asterisk 1.8  | Yes | No  | [lenz/asterisk-load-test-1.8] | docker run -P -d lenz/asterisk-load-test-1.8 | CentOS |
-| Asterisk 11   | Yes | No  | [lenz/asterisk-load-test-11]  | docker run -P -d lenz/asterisk-load-test-11 | Digium |
-| Asterisk 12   | Yes | Yes | [lenz/asterisk-load-test-12]  | docker run -P -d lenz/asterisk-load-test-12 | Digium |
-| Asterisk 13   | Yes | Yes | [lenz/asterisk-load-test-13]  | docker run -P -d lenz/asterisk-load-test-13 | Digium |
+| Version       | AMI | ARI | Image         | Run with  | RPMS from | Asterisk |
+| ------------- |:---:|:---:|:-------------:| --------- | --------- | -------- |
+| Asterisk 1.8  | Yes | No  | [lenz/asterisk-load-test-1.8] | docker run -P -d lenz/asterisk-load-test-1.8 | CentOS | 1.8.32 |
+| Asterisk 11   | Yes | No  | [lenz/asterisk-load-test-11]  | docker run -P -d lenz/asterisk-load-test-11 | Digium | 11.17.0 |
+| Asterisk 12   | Yes | Yes | [lenz/asterisk-load-test-12]  | docker run -P -d lenz/asterisk-load-test-12 | Digium | 12.8.1 |
+| Asterisk 13   | Yes | Yes | [lenz/asterisk-load-test-13]  | docker run -P -d lenz/asterisk-load-test-13 | Digium | 13.3.0 |
 
 
 [lenz/asterisk-load-test-1.8]: https://registry.hub.docker.com/u/lenz/asterisk-load-test-1.8/
@@ -145,6 +145,15 @@ Please note that at the moment you cannot run too many channels on a Docker inst
 set ulimit within a Docker image: 
 
 http://stackoverflow.com/questions/24318543/how-to-set-ulimit-file-descriptor-on-docker-container-the-image-tag-is-phusion
+
+This should be fixed in Docker 1.6 - see https://blog.docker.com/2015/04/docker-release-1-6/
+
+So it should be possible to run:
+
+     docker run -p 12345:5038 -P -d  --default-ulimit nofile=1000:1000 lenz/asterisk-load-test-13
+
+To set the soft and hard max files to 1000. But I have not tested this yet.
+
 
 
 

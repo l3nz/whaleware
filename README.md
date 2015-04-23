@@ -27,7 +27,7 @@ Principles
 - Data should be stored in a separate directory, ready to mount a data-only container (if you want to)
   or to run without persistent data at all.
 - You should be able to customize easily all of the features above, and decide what to use and 
-  what to ignore. You don't want notifications? leave them blank.
+  what to ignore. You want notifications? edit one file. You don't want notifications? just leave it blank.
 
 
 Benefits
@@ -188,5 +188,6 @@ Examples
 * [wombatdialer](examples/wombatdialer/wombatdialer.md). - a next generation dialer application for the Asterisk PBX. 
   It is interesting because it is a Java web application with embedded MySQL
   and has a complex life cycle - so you can see the basic components in action.
-
+* [asterisk-load-test](examples/asterisk-load-test/README.md). - a set of plain Asterisk images that you can hot-swap. 
+  AMI and ARI ports are up and ready for developement and testing.
 

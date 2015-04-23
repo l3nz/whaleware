@@ -97,7 +97,7 @@ to your whaleware image:
     docker run --name=MYWBT loway/data true
     docker run --volumes-from MYWBT -p 8080:8080 -d loway/wombatdialer
 
-By using a named container, the likelihood or binding to the wrong container is reduced.
+By using a named container, the likelihood of binding to the wrong container is reduced.
 
 ### Using a local directory
 
@@ -180,7 +180,7 @@ that an external system can be aware of the current state of the app.
   a SIGHUP was received by the Docker host. After the restart, the system is flagged as UP.
 - STOPPED - System is being stopped because it received a SIGTERM from Docker (likely a "docker stop" was performed)
 - ERROR - System is in an unrecoverable error state and is terminating (not currently used).
-- DOCKERDOWN - - An optional state notified by a stop script after the Docker app is shutdown
+- DOCKERDOWN - An optional state notified by a stop script after the Docker app is shutdown
 
 Examples
 --------
@@ -189,5 +189,6 @@ Examples
   It is interesting because it is a Java web application with embedded MySQL
   and has a complex life cycle - so you can see the basic components in action.
 * [asterisk-load-test](examples/asterisk-load-test/README.md). - a set of plain Asterisk images that you can hot-swap. 
-  AMI and ARI ports are up and ready for developement and testing.
+  AMI and ARI ports are up and ready for developement and testing. Now available for Asterisk 1.8, Asterisk 11, Asterisk 12 and 
+  Asterisk 13.
 

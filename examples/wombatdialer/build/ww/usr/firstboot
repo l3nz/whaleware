@@ -31,6 +31,9 @@ ln -s /data/wbt/tpf.properties tpf.properties
 cp $WFILES/tomcat_index.jsp /usr/local/queuemetrics/tomcat/webapps/ROOT/index.jsp
 rm -f /usr/local/queuemetrics/tomcat/webapps/ROOT/index.html
 
+# does not use 'su' to overrid eold Docker bug 
+sed -i -e 's/su .TOMCAT_OWNER -c//g' /etc/init.d/qm-tomcat6
+
 # stop mysql
 /etc/init.d/mysqld stop
 

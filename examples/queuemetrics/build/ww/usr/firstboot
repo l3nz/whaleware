@@ -22,7 +22,7 @@ sleep 2
 mysql mysql <  $QM/WEB-INF/README/queuemetrics_create.sql
 mysql -uqueuemetrics -pjavadude queuemetrics <  $QM/WEB-INF/README/queuemetrics_sample.sql
 
-cp $WFILES/tpf.properties /data/wbt/tpf.properties
+cp $WFILES/tpf.properties /data/qm/tpf.properties
 rm -rf $QM/WEB-INF/tpf.properties
 cd $QM/WEB-INF/
 ln -s /data/qm/tpf.properties tpf.properties

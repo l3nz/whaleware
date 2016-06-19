@@ -26,7 +26,7 @@ mysql -uqueuemetrics -pjavadude queuemetrics <  $QM/WEB-INF/README/queuemetrics_
 cp $WFILES/tpf.properties /data/qm/tpf.properties
 
 # configuration
-cp $QM/WEB-INF/configuration.properties /data/qm/configuration.properties
+cp $QM/WEB-INF/configuration.properties.OLD /data/qm/configuration.properties
 
 
 # redirect visitors from ROOT/index.jsp to /wombat/

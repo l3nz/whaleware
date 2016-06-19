@@ -27,5 +27,5 @@ ln -s /data/qm/tpf.properties tpf.properties
 
 # configuration
 cd $QM/WEB-INF/
-rm -rf configuration.properties
+mv configuration.properties configuration.properties.OLD
 ln -s /data/qm/configuration.properties configuration.properties

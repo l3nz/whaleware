@@ -1,0 +1,9 @@
+#! /bin/bash
+
+echo "Warming up - sleeping for 3 secs so Tomcat can go up"
+sleep 3
+
+
+
+
+

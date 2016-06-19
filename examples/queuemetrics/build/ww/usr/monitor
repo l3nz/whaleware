@@ -1,0 +1,15 @@
+#! /bin/bash
+
+WCFG=/ww/cfg
+
+RES=$( curl -s --retry 2 --retry-delay 5 http://localhost:8080/queuemetrics/sysup.do )
+STATE=$( echo $RES | jq -r '.state' )
+
+if [ "$STATE" = "WBTUP" ] ; then
+     echo $RES
+     exit 0
+else
+     echo "DOWN - RESTARTING"
+     exit 1
+fi
+

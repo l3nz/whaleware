@@ -19,13 +19,13 @@ echo ==== CREATE DB
 /etc/init.d/mysqld start
 sleep 2
 
-mysql mysql <  $QM/WEB-INF/DB/wombat_create.sql
-mysql -uwombat -pdials wombat <  $QM/WEB-INF/DB/wombat_schema.sql
+mysql mysql <  $QM/WEB-INF/README/queuemetrics_create.sql
+mysql -uqueuemetrics -pjavadude queuemetrics <  $QM/WEB-INF/README/queuemetrics_sample.sql
 
 cp $WFILES/tpf.properties /data/wbt/tpf.properties
 rm -rf $QM/WEB-INF/tpf.properties
 cd $QM/WEB-INF/
-ln -s /data/wbt/tpf.properties tpf.properties
+ln -s /data/qm/tpf.properties tpf.properties
 
 
 # redirect visitors from ROOT/index.jsp to /wombat/

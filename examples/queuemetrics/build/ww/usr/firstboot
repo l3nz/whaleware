@@ -24,15 +24,9 @@ mysql -uqueuemetrics -pjavadude queuemetrics <  $QM/WEB-INF/README/queuemetrics_
 
 # tpf.properties
 cp $WFILES/tpf.properties /data/qm/tpf.properties
-rm -rf $QM/WEB-INF/tpf.properties
-cd $QM/WEB-INF/
-ln -s /data/qm/tpf.properties tpf.properties
 
 # configuration
 cp $QM/WEB-INF/configuration.properties /data/qm/configuration.properties
-rm -rf $QM/WEB-INF/configuration.properties
-cd $QM/WEB-INF/
-ln -s /data/qm/configuration.properties configuration.properties
 
 
 # redirect visitors from ROOT/index.jsp to /wombat/

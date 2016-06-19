@@ -3,6 +3,9 @@
 WCFG=/ww/cfg
 WFILES=/ww/files
 
+QM=/usr/local/queuemetrics/tomcat/webapps/queuemetrics
+
+
 # Set up MySQL
 cp $WFILES/my.cnf /etc/my.cnf
 
@@ -17,4 +20,12 @@ JOPTS="-server -Xmx$MEM -Xms$MEM -Duser.timezone=$TIMEZONE"
 echo export JAVA_OPTS=\"$JOPTS\" >> /etc/sysconfig/qm-tomcat6
 
 
+# links to existing files
+cd $QM/WEB-INF/
+rm -rf tpf.properties
+ln -s /data/qm/tpf.properties tpf.properties
 
+# configuration
+cd $QM/WEB-INF/
+rm -rf configuration.properties
+ln -s /data/qm/configuration.properties configuration.properties

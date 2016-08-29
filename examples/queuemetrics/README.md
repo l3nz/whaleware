@@ -1,10 +1,9 @@
 Running QueueMetrics under whaleware
 ====================================
 
-WombatDialer - http://queuemetrics.com - is ....
+QueueMetrics is a high-pprofile call-center monitoring & reporting tool for Asterisk PBX, developed by Loway. https://www.queuemetrics.com
 
-
-The application running under whaleware is available as image 'loway/queuemetrics' from https://registry.hub.docker.com/u/loway/wombatdialer/
+The application running under whaleware is available as image 'loway/queuemetrics' from https://registry.hub.docker.com/u/loway/queuemetrics/
 
 The Dockerfile
 --------------

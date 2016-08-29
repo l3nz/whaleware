@@ -9,7 +9,7 @@ The Dockerfile
 --------------
 
 The [Doockerfile under build/](build/Dockerfile) is as plain as it can be. It starts from an image of CentOS 6 that already
-contains whaleware, exposes HTTP port 8080, installs WombatDialer using the yum package manager as you would manually
+contains whaleware, exposes HTTP port 8080, installs QueueMetrics using the yum package manager as you would manually
 and copies the conents of local folder "ww" to "/ww".
 
 As you can see, this Dockerfile does not contain a complex set-up process. All copying, customizing and renaming of files
@@ -31,13 +31,13 @@ The scripts
 - `firstboot` - This script is run only on the first boot and is meant to configure the data directories. In our case,
     not only it creates data directories, but it starts MySQL in order to pre-load the default database.
 - `warmup` - just waits a few seconds so we can be sure that Tomcat is up and running
-- `monitor` - we call a specific URL to make sure WombatDialer is running. WombatDialer has an embedded health
-  service that checks everything is okay and returns the code "WBTUP" if all is in order.
+- `monitor` - we call a specific URL to make sure QueueMetrics is running. QueueMetrics has an embedded health
+  service that checks everything is okay and returns the code "QMUP" if all is in order.
 - `svcdown` and `svcup` will respectively shutdown and start MySQL and Tomcat together.
 
 Some scripts we don't need at this stage, so we just don't have them under ww/usr:
 
-- `upgrade` - upgrades the system (eg applies database schema changes). WombatDialer does this automatically
+- `upgrade` - upgrades the system (eg applies database schema changes). QueueMetrics does this automatically
   if it detects an outdated database.
 - `lifecycle [STATE]` - notifies a central server about the life-cycle of the current app
 - `pushstats [JSON]` - pushes a JSON blob

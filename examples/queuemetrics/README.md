@@ -1,7 +1,7 @@
 Running QueueMetrics under whaleware
 ====================================
 
-QueueMetrics is a high-pprofile call-center monitoring & reporting tool for Asterisk PBX, developed by Loway. https://www.queuemetrics.com
+QueueMetrics is a high-profile call-center monitoring & reporting tool for the Asterisk PBX, developed by Loway. https://www.queuemetrics.com
 
 The application running under whaleware is available as image 'loway/queuemetrics' from https://registry.hub.docker.com/u/loway/queuemetrics/
 

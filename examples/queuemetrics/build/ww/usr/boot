@@ -16,7 +16,7 @@ TIMEZONE=$($WCFG timezone)
 
 echo Memory: $MEM Timezone: $TIMEZONE
 
-JOPTS="-server -Xmx$MEM -Xms$MEM -Duser.timezone=$TIMEZONE"
+JOPTS="-server -Djava.security.egd=file:/dev/./urandom -Xmx$MEM -Xms$MEM -Duser.timezone=$TIMEZONE "
 echo export JAVA_OPTS=\"$JOPTS\" >> /etc/sysconfig/qm-tomcat6
 
 

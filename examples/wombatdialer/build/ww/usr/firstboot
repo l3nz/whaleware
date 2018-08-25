@@ -17,10 +17,11 @@ mkdir -p /data/wbt
 # start mysql and wait for a while until it's up
 echo ==== CREATE DB
 /etc/init.d/mysqld start
-sleep 2
+sleep 5
 
+echo === UPLOAD DB
 mysql mysql <  $WOMBAT/WEB-INF/DB/wombat_create.sql
-mysql -uwombat -pdials wombat <  $WOMBAT/WEB-INF/DB/wombat_schema.sql
+mysql -h127.0.0.1 -uwombat -pdials wombat <  $WOMBAT/WEB-INF/DB/wombat_schema.sql
 
 cp $WFILES/tpf.properties /data/wbt/tpf.properties
 rm -rf $WOMBAT/WEB-INF/tpf.properties

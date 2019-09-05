@@ -1,15 +1,25 @@
 FROM centos:centos7
 
-RUN yum install -y epel-release && \
-    yum install -y wget lsof nano tar jq && \
-    yum update -y bash && \
-    mkdir -p /data && \
-	mkdir -p /ww && \
-	mkdir -p /backup && \
-	yum clean all
+RUN yum update -y && \
+    yum install epel-release -y && \
+    curl -s -q http://yum.loway.ch/loway.repo --output /etc/yum.repos.d/loway.repo && \
+    yum install -y \
+	bzip2 \
+	initscripts \
+	java-1.8.0-openjdk-devel \
+	jq \
+	lsof \
+	mariadb-server \
+	nano \
+	tar \
+	wget && \
+    yum clean all && \
+    mkdir -p /data /ww /backup
+
+EXPOSE 8080
 
 CMD ["/ww/run"]
+
 ADD ./ww /ww
-
-
+ADD ./mysqld /etc/init.d/
 

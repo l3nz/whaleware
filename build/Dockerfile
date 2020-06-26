@@ -8,9 +8,11 @@ RUN yum update -y && \
 	initscripts \
 	java-1.8.0-openjdk-devel \
 	jq \
+	less \
 	lsof \
 	mariadb-server \
 	nano \
+	net-tools \
 	tar \
 	wget && \
     yum clean all && \

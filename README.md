@@ -4,7 +4,7 @@ whaleware
 	
 
 A standard startup template for Docker server images. Available as a base CentOS 7 image 
-under the name 'lenz/whaleware' - https://registry.hub.docker.com/u/lenz/whaleware/
+under the name 'lenz/whaleware' - https://registry.hub.docker.com/r/lenz/whaleware
 
 Principles
 ----------

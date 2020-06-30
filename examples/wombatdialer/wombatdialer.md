@@ -9,7 +9,7 @@ As it was designed to work "out of the box" on any existing Asterisk-based PBX, 
 being run under Docker - you run it, log on via a web browser and do your things. 
 Plus, it only exposes the HTTP port, even if it is making direct AMI connetions to the Asterisk PBX.
 
-The application running under whaleware is available as image 'loway/wombatdialer' from https://registry.hub.docker.com/u/loway/wombatdialer/
+The application running under whaleware is available as image 'loway/wombatdialer' from https://registry.hub.docker.com/r/loway/wombatdialer/
 
 The Dockerfile
 --------------

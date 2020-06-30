@@ -25,7 +25,7 @@ Want to run WombatDialer to put some load on those images?
      docker run -p 8080:8080 -P -d loway/wombatdialer
 
 And connect to it over HTTP http://server.ip:8080/wombat (login as 'demoadmin' password 'demo').
-See https://registry.hub.docker.com/u/loway/wombatdialer/
+See https://registry.hub.docker.com/r/loway/wombatdialer/
 
 
 ## Available Docker images
@@ -38,10 +38,10 @@ See https://registry.hub.docker.com/u/loway/wombatdialer/
 | Asterisk 13   | Yes | Yes | [lenz/asterisk-load-test-13]  | docker run -P -d lenz/asterisk-load-test-13 | Digium | 13.3.0 |
 
 
-[lenz/asterisk-load-test-1.8]: https://registry.hub.docker.com/u/lenz/asterisk-load-test-1.8/
-[lenz/asterisk-load-test-11]: https://registry.hub.docker.com/u/lenz/asterisk-load-test-11/
-[lenz/asterisk-load-test-12]: https://registry.hub.docker.com/u/lenz/asterisk-load-test-12/
-[lenz/asterisk-load-test-13]: https://registry.hub.docker.com/u/lenz/asterisk-load-test-13/
+[lenz/asterisk-load-test-1.8]: https://registry.hub.docker.com/r/lenz/asterisk-load-test-1.8/
+[lenz/asterisk-load-test-11]: https://registry.hub.docker.com/r/lenz/asterisk-load-test-11/
+[lenz/asterisk-load-test-12]: https://registry.hub.docker.com/r/lenz/asterisk-load-test-12/
+[lenz/asterisk-load-test-13]: https://registry.hub.docker.com/r/lenz/asterisk-load-test-13/
 [WombatDialer]: http://wombatdialer.com
 [Loway]: http://loway.ch
 [QueueMetrics]: http://queuemetrics.com

@@ -1,4 +1,4 @@
-FROM lenz/whaleware:190913a
+FROM lenz/whaleware:200630a
 
 EXPOSE 8080
 

@@ -6,7 +6,7 @@ RUN yum update -y && \
     yum install -y \
 	bzip2 \
 	initscripts \
-	java-1.8.0-openjdk-devel \
+	java-1.8.0-openjdk-headless \
 	jq \
 	less \
 	lsof \
